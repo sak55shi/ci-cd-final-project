@@ -1,38 +1,30 @@
-# CI/CD Tools and Practices Final Project Template
+# CI/CD Final Project - Accounts Microservice
 
-This repository contains the template to be used for the Final Project for the Coursera course **CI/CD Tools and Practices**.
+[![CI workflow](https://github.com/sak55shi/ci-cd-final-project/actions/workflows/workflow.yml/badge.svg)](https://github.com/sak55shi/ci-cd-final-project/actions/workflows/workflow.yml)
 
-## Usage
+This project implements an Accounts microservice with automated continuous integration and continuous deployment.
 
-This repository is to be used as a template to create your own repository in your own GitHub account. No need to Fork it as it has been set up as a Template. This will avoid confusion when making Pull Requests in the future.
+## Technologies
+- Python and Flask
+- REST API
+- Flake8 linting
+- Nose unit tests
+- Docker
+- OpenShift and Tekton Pipelines
+- GitHub Actions
 
-From the GitHub **Code** page, press the green **Use this template** button to create your own repository from this template.
+## Continuous Integration
+GitHub Actions checks out the repository, installs dependencies, runs Flake8 linting, and executes unit tests using nosetests.
 
-Name your repo: `ci-cd-final-project`.
+## Continuous Deployment
+The Tekton pipeline clones the repository, runs linting and tests, builds and pushes the container image, and deploys the application to OpenShift.
 
 ## Setup
+Run the setup script in the lab environment:
 
-After entering the lab environment you will need to run the `setup.sh` script in the `./bin` folder to install the prerequisite software.
-
-```bash
+\`\`\`bash
 bash bin/setup.sh
-```
-
-Then you must exit the shell and start a new one for the Python virtual environment to be activated.
-
-```bash
-exit
-```
-
-## Tasks
-
+\`\`\`
 
 ## License
-
-Licensed under the Apache License. See [LICENSE](/LICENSE)
-
-## Author
-
-Skills Network
-
-## <h3 align="center"> © IBM Corporation 2023. All rights reserved. <h3/>
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE).
