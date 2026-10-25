@@ -3,9 +3,13 @@ Service Package
 """
 from flask import Flask
 from flask_talisman import Talisman
+from flask_cors import CORS
 
 app = Flask(__name__)
 Talisman(app, force_https=False)
+app = Flask(__name__)
+Talisman(app, force_https=False)
+CORS(app)
 
 # This must be imported after the Flask app is created
 from service import routes  # pylint: disable=wrong-import-position,cyclic-import
