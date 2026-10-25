@@ -1,19 +1,39 @@
+
 apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: ci-build
 spec:
+  params:
+    - name: repo-url
+      type: string
+  workspaces:
+    - name: shared-workspace
   tasks:
     - name: checkout
       taskRef:
         name: git-clone
+      params:
+        - name: url
+          value: $(params.repo-url)
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+
     - name: lint
       runAfter:
         - checkout
       taskRef:
         name: flake8
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+
     - name: unit-tests
       runAfter:
         - lint
       taskRef:
         name: nose
+      workspaces:
+        - name: source
+          workspace: shared-workspace
