@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: ci-build
+spec:
+  tasks:
+    - name: checkout
+      taskRef:
+        name: git-clone
+    - name: lint
+      runAfter:
+        - checkout
+      taskRef:
+        name: flake8
+    - name: unit-tests
+      runAfter:
+        - lint
+      taskRef:
+        name: nose
